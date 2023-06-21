@@ -25,7 +25,6 @@ pipeline {
             steps {
                 sh 'docker run -itd --mount source=myhttpd_vol,destination=/var/www/html --name myhttpd -p "8090:80" myhttpd'
             }
-        }
-        
+        }      
     }
 }
