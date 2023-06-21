@@ -27,6 +27,7 @@ pipeline {
                 sh 'docker network create myhttpd_network'
             }
             catch(error){
+                //  do nothing if there is an exception
             }
         }
         stage ('Dcoker Network Create'){
@@ -39,6 +40,7 @@ pipeline {
                 sh 'docker rm -f myhttpd'
             }
             catch(error){
+                //  do nothing if there is an exception
             }
         }
         stage ('Docker Deployment'){
