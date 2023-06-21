@@ -8,7 +8,13 @@ pipeline {
         }
         stage ('Docker Image Build'){
             steps {
-                sh 'docker build -t myhttpd .'
+                sh 'docker build -t jeeva1806/myhttpd:0.1 .'
+            }
+        }
+        stage ('Docker Image Push'){
+            steps {
+                sh 'docker login -u jeeva1806 -p "${docker_password}"'
+                sh 'docker push jeeva1806/myhttpd:0.1'
             }
         }
         stage ('Docker Volume Create'){
@@ -28,7 +34,7 @@ pipeline {
         }
         stage ('Docker Deployment'){
             steps {
-                sh 'docker run -itd --mount source=myhttpd_vol,destination=/var/www/html --network=myhttpd_network --name myhttpd -p "8090:80" myhttpd'
+                sh 'docker run -itd --mount source=myhttpd_vol,destination=/var/www/html --network=myhttpd_network --name myhttpd -p "8090:80" jeeva1806/myhttpd:0.1'
             }
         }      
     }
