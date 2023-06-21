@@ -29,7 +29,7 @@ pipeline {
                         sh 'docker network create myhttpd_network'
                     }
                     catch (Exception e) {
-                        echo "Network already exist hence build continues"
+                        echo "Network is already exist hence build continues"
                     }
                 }
             }
