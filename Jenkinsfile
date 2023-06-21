@@ -22,15 +22,12 @@ pipeline {
                 sh 'docker volume create myhttpd_vol'
             }
         }
-        stage ('Remove Previous Network'){
-            steps {
-                sh 'docker network rm myhttpd_network'
-            }
-        }
         stage ('Dcoker Network Create'){
-            steps {
+            try {
                 sh 'docker network create myhttpd_network'
             }
+            catch (Exception e) {
+                echo "Network already exist hence build continues"
         }
         stage ('Remove Previous Container'){
             steps {
