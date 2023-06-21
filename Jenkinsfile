@@ -28,8 +28,10 @@ pipeline {
             }
         }
         stage ('Remove Previous Container'){
-            steps {
+            try {
                 sh 'docker rm -f myhttpd'
+            }
+            catch(error){
             }
         }
         stage ('Docker Deployment'){
