@@ -36,7 +36,13 @@ pipeline {
         }
         stage ('Remove Previous Container'){
             steps {
-                sh 'docker rm -f myhttpd'
+                script {
+                    try {
+                        sh 'docker rm -f myhttpd'
+                    }
+                    catch (error) {
+                    }
+                }
             }
         }
         stage ('Docker Deployment'){
