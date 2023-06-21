@@ -16,7 +16,7 @@ pipeline {
                 sh 'docker volume create myhttpd_vol'
             }
         }
-        stage ('Remove previous container'){
+        stage ('Remove Previous Container'){
             steps {
                 sh 'docker rm -f myhttpd'
             }
