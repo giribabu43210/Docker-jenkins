@@ -28,6 +28,7 @@ pipeline {
             }
             catch (Exception e) {
                 echo "Network already exist hence build continues"
+            }
         }
         stage ('Remove Previous Container'){
             steps {
