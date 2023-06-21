@@ -11,9 +11,14 @@ pipeline {
                 sh 'docker build -t myhttpd .'
             }
         }
-        stage ('Docker Network Create'){
+        stage ('Docker Volume Create'){
             steps {
                 sh 'docker volume create myhttpd_vol'
+            }
+        }
+        stage ('Dcoker Network Create'){
+            steps {
+                sh 'docker network create myhttpd_network'
             }
         }
         stage ('Remove Previous Container'){
@@ -23,7 +28,7 @@ pipeline {
         }
         stage ('Docker Deployment'){
             steps {
-                sh 'docker run -itd --mount source=myhttpd_vol,destination=/var/www/html --name myhttpd -p "8090:80" myhttpd'
+                sh 'docker run -itd --mount source=myhttpd_vol,destination=/var/www/html --network=myhttpd_network --name myhttpd -p "8090:80" myhttpd'
             }
         }      
     }
