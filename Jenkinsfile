@@ -23,11 +23,8 @@ pipeline {
             }
         }
         stage ('Remove Previous Network'){
-            try {
-                sh 'docker network create myhttpd_network'
-            }
-            catch(error){
-                //  do nothing if there is an exception
+            steps {
+                sh 'docker network rm myhttpd_network'
             }
         }
         stage ('Dcoker Network Create'){
@@ -36,11 +33,8 @@ pipeline {
             }
         }
         stage ('Remove Previous Container'){
-            try {
+            steps {
                 sh 'docker rm -f myhttpd'
-            }
-            catch(error){
-                //  do nothing if there is an exception
             }
         }
         stage ('Docker Deployment'){
