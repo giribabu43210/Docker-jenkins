@@ -22,7 +22,7 @@ pipeline {
                 sh 'docker volume create myhttpd_vol'
             }
         }
-        stage ('Remove Previous Container'){
+        stage ('Remove Previous Network'){
             try {
                 sh 'docker network create myhttpd_network'
             }
