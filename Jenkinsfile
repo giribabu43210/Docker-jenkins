@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('SCM Checkout'){
             steps {
-                git 'https://github.com/jeeva1806/Docker-jenkins'
+                git 'https://github.com/jeeva1806/Docker-jenkins.git'
             }
         }
         stage ('Docker Image Build'){
