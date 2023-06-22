@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_PASSWORD = credentials('Docker')
+    }
     stages {
         stage ('SCM Checkout'){
             steps {
@@ -13,7 +16,7 @@ pipeline {
         }
         stage ('Docker Image Push'){
             steps {
-                sh 'docker login -u jeeva1806 -p "${docker_password}"'
+                sh 'docker login -u jeeva1806 -p "${DOCKER_PASSWORD}"'
                 sh 'docker push jeeva1806/private_repo:0.1'
             }
         }
