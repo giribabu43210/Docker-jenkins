@@ -47,7 +47,7 @@ pipeline {
         }
         stage ('Docker Deployment'){
             steps {
-                sh 'docker run -itd --network=myhttpd_network --name myhttpd -p "8090:80" jeeva1806/private_repo:0.1'
+                sh 'docker run -itd --mount source=myhttpd_vol,destination=/var/www/html --network=myhttpd_network --name myhttpd -p "8090:80" jeeva1806/private_repo:0.1'
             }
         }      
     }
