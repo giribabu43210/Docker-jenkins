@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_PASSWORD = credentials('Docker')
-    }
+
     stages {
         stage ('SCM Checkout'){
             steps {
